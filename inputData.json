@@ -1,0 +1,46 @@
+// ----------------------------------------------
+{
+  "employee": {
+    "empName": "Joel Oliveira",
+    "empEmail": "joel@gmail.com",
+    "empDesignation": "Intern",
+    "tasks": [
+      {
+        "taskTitle": "Task_1",
+        "taskDescription": "Task description #1",
+        "taskStatus": "In progress",
+        "dueDate": "01-05-2024"
+      },
+      {
+        "taskTitle": "Task_2",
+        "taskDescription": "Task description #2",
+        "taskStatus": "Completed",
+        "dueDate": "15-05-2024"
+      }
+    ]
+  }
+}
+
+//---------------------------------------------------
+
+{
+  "employee": {
+    "empName": "Suyog Chari",
+    "empEmail": "chari@gmail.com",
+    "empDesignation": "FrontEnd Developer",
+    "tasks": [
+      {
+        "taskTitle": "Task_10",
+        "taskDescription": "Task description #10",
+        "taskStatus": "In progress",
+        "dueDate": "01-05-2024"
+      },
+      {
+        "taskTitle": "Task_11",
+        "taskDescription": "Task description #11",
+        "taskStatus": "Completed",
+        "dueDate": "15-05-2024"
+      }
+    ]
+  }
+}
