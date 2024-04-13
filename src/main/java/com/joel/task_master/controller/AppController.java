@@ -70,6 +70,7 @@ public class AppController {
                     )
             }
     )
+    @CrossOrigin
     @PostMapping("/employee-task")
     public ResponseEntity<Employee> saveEmployeeWithTask(@RequestBody EmployeeTaskDTO employeeTaskDTO) {
         Employee employee = service.saveEmployeeWithTask(employeeTaskDTO.getEmployee());
@@ -112,6 +113,7 @@ public class AppController {
             }
     )
     @PostMapping("/employee")
+    @CrossOrigin
     public ResponseEntity<EmployeeDTO> saveEmployee(@RequestBody EmployeeDTO employeeDTO) {
         return new ResponseEntity<>(service.saveEmployee(employeeDTO), HttpStatus.CREATED);
     }
@@ -152,6 +154,7 @@ public class AppController {
             }
     )
     @PostMapping("/task/{empId}")
+    @CrossOrigin
     public ResponseEntity<TaskDTO> saveTask(@RequestBody TaskDTO taskDTO, @PathVariable("empId") Long empId) {
         return new ResponseEntity<>(service.saveTask(taskDTO, empId), HttpStatus.CREATED);
     }
@@ -192,6 +195,7 @@ public class AppController {
             }
     )
     @PutMapping("/employee/{empId}")
+    @CrossOrigin
     public ResponseEntity<EmployeeDTO> updateEmpById(@PathVariable("empId") Long empId, @RequestBody EmployeeDTO employeeDTO) {
         return new ResponseEntity<>(service.updateEmployeeById(empId, employeeDTO), HttpStatus.OK);
     }
@@ -233,6 +237,7 @@ public class AppController {
     )
 
     @PutMapping("/task/{taskId}")
+    @CrossOrigin
     public ResponseEntity<TaskDTO> updateTaskById(@PathVariable("taskId") Long taskId, @RequestBody TaskDTO taskDTO) {
         return new ResponseEntity<>(service.updateTaskById(taskId, taskDTO), HttpStatus.OK);
     }
@@ -274,6 +279,7 @@ public class AppController {
     )
 
     @GetMapping("/employee-task-id/{taskId}")
+    @CrossOrigin
     public ResponseEntity<EmployeeDTO> getEmployeeByTaskId(@PathVariable("taskId") Long taskId) {
         return new ResponseEntity<>(service.getEmployeeByTaskId(taskId), HttpStatus.OK);
     }
@@ -315,6 +321,7 @@ public class AppController {
     )
 
     @GetMapping("/employee/{empId}")
+    @CrossOrigin
     public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable("empId") Long empId) {
         return new ResponseEntity<>(service.getEmployeeById(empId), HttpStatus.OK);
     }
@@ -360,6 +367,7 @@ public class AppController {
     )
 
     @GetMapping("/employee")
+    @CrossOrigin
     public ResponseEntity<List<EmployeeDTO>> getAllEmployee() {
         return new ResponseEntity<>(service.getAllEmployee(), HttpStatus.OK);
     }
@@ -403,6 +411,7 @@ public class AppController {
     )
 
     @GetMapping("/task-emp-id/{empId}")
+    @CrossOrigin
     public ResponseEntity<List<TaskDTO>> getTaskByEmpId(@PathVariable("empId") Long empId) {
         return new ResponseEntity<>(service.getTaskByEmployeeId(empId), HttpStatus.OK);
     }
@@ -444,6 +453,7 @@ public class AppController {
     )
 
     @GetMapping("/task/{taskId}")
+    @CrossOrigin
     public ResponseEntity<TaskDTO> getTaskById(@PathVariable("taskId") Long taskId) {
         return new ResponseEntity<>(service.getTaskById(taskId), HttpStatus.OK);
     }
@@ -487,6 +497,7 @@ public class AppController {
     )
 
     @GetMapping("/task")
+    @CrossOrigin
     public ResponseEntity<List<TaskDTO>> getAllTask() {
         return new ResponseEntity<>(service.getAllTask(), HttpStatus.OK);
     }
@@ -525,6 +536,7 @@ public class AppController {
     )
 
     @DeleteMapping("/employee/{empId}")
+    @CrossOrigin
     public ResponseEntity<Void> deleteEmpById(@PathVariable("empId") Long empId) {
         service.deleteEmployeeById(empId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -564,6 +576,7 @@ public class AppController {
     )
 
     @DeleteMapping("/task/{taskId}")
+    @CrossOrigin
     public ResponseEntity<Void> deleteTaskById(@PathVariable("taskId") Long taskId) {
         service.deleteTaskById(taskId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
