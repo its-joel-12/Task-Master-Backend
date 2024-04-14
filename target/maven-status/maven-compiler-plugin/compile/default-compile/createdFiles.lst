@@ -5,7 +5,6 @@ com\joel\task_master\model\Employee.class
 com\joel\task_master\service\Service.class
 com\joel\task_master\dto\TaskDTO.class
 com\joel\task_master\exception\TaskMasterExceptionHandler.class
-com\joel\task_master\controller\AppController.class
 com\joel\task_master\exception\EmployeeNotFoundException.class
 com\joel\task_master\dto\EmployeeDTO.class
 com\joel\task_master\model\Task.class
