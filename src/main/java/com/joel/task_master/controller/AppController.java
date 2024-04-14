@@ -495,9 +495,9 @@ public class AppController {
                     )
             }
     )
-
-    @GetMapping("/task")
     @CrossOrigin
+    @GetMapping("/task")
+
     public ResponseEntity<List<TaskDTO>> getAllTask() {
         return new ResponseEntity<>(service.getAllTask(), HttpStatus.OK);
     }
