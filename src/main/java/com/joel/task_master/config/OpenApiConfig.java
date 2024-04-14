@@ -28,7 +28,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
         servers = {
                 @Server(
                         description = "Dev",
-                        url = "http://localhost:8080"
+                        url = "https://task-master-backend-x8cz.onrender.com/"
                 ),
                 @Server(
                         description = "Test",
