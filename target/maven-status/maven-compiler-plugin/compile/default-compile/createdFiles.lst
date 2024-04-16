@@ -2,7 +2,6 @@ com\joel\task_master\repository\TaskRepository.class
 com\joel\task_master\dto\EmployeeTaskDTO.class
 com\joel\task_master\exception\TaskNullDetailsException.class
 com\joel\task_master\model\Employee.class
-com\joel\task_master\service\Service.class
 com\joel\task_master\dto\TaskDTO.class
 com\joel\task_master\exception\TaskMasterExceptionHandler.class
 com\joel\task_master\exception\EmployeeNotFoundException.class
@@ -12,6 +11,5 @@ com\joel\task_master\exception\EmployeeNullDetailsException.class
 com\joel\task_master\repository\EmployeeRepository.class
 com\joel\task_master\TaskMasterApplication.class
 com\joel\task_master\exception\TaskMasterException.class
-com\joel\task_master\service\ServiceImpl.class
 com\joel\task_master\exception\TaskNotFoundException.class
 com\joel\task_master\config\OpenApiConfig.class
