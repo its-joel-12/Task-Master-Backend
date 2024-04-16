@@ -1,11 +1,9 @@
 package com.joel.task_master.controller;
 
-import com.joel.task_master.dto.EmployeeDTO;
-import com.joel.task_master.dto.EmployeeTaskDTO;
 import com.joel.task_master.dto.TaskDTO;
 import com.joel.task_master.exception.TaskMasterException;
-import com.joel.task_master.model.Employee;
-import com.joel.task_master.service.Service;
+import com.joel.task_master.service.EmployeeService;
+import com.joel.task_master.service.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -24,7 +22,7 @@ import java.util.List;
 public class TaskController {
 
     @Autowired
-    private Service service;
+    private TaskService taskService;
 
     // SAVE TASK WITH EMP ID ------------------------------------------------------------------------
     @Operation(
@@ -64,7 +62,7 @@ public class TaskController {
     @PostMapping("/task/{empId}")
     @CrossOrigin
     public ResponseEntity<TaskDTO> saveTask(@RequestBody TaskDTO taskDTO, @PathVariable("empId") Long empId) {
-        return new ResponseEntity<>(service.saveTask(taskDTO, empId), HttpStatus.CREATED);
+        return new ResponseEntity<>(taskService.saveTask(taskDTO, empId), HttpStatus.CREATED);
     }
 
     // UPDATE TASK BY ID ----------------------------------------------------------------------------
@@ -106,7 +104,7 @@ public class TaskController {
     @PutMapping("/task/{taskId}")
     @CrossOrigin
     public ResponseEntity<TaskDTO> updateTaskById(@PathVariable("taskId") Long taskId, @RequestBody TaskDTO taskDTO) {
-        return new ResponseEntity<>(service.updateTaskById(taskId, taskDTO), HttpStatus.OK);
+        return new ResponseEntity<>(taskService.updateTaskById(taskId, taskDTO), HttpStatus.OK);
     }
 
     // GET TASK BY EMP-ID ---------------------------------------------------------------------------
@@ -150,7 +148,7 @@ public class TaskController {
     @GetMapping("/task-emp-id/{empId}")
     @CrossOrigin
     public ResponseEntity<List<TaskDTO>> getTaskByEmpId(@PathVariable("empId") Long empId) {
-        return new ResponseEntity<>(service.getTaskByEmployeeId(empId), HttpStatus.OK);
+        return new ResponseEntity<>(taskService.getTaskByEmployeeId(empId), HttpStatus.OK);
     }
 
     // GET TASK BY ID -------------------------------------------------------------------------------
@@ -192,7 +190,7 @@ public class TaskController {
     @GetMapping("/task/{taskId}")
     @CrossOrigin
     public ResponseEntity<TaskDTO> getTaskById(@PathVariable("taskId") Long taskId) {
-        return new ResponseEntity<>(service.getTaskById(taskId), HttpStatus.OK);
+        return new ResponseEntity<>(taskService.getTaskById(taskId), HttpStatus.OK);
     }
 
     // GET ALL TASKS --------------------------------------------------------------------------------
@@ -234,8 +232,8 @@ public class TaskController {
     )
     @CrossOrigin
     @GetMapping("/task")
-    public ResponseEntity<List<TaskDTO>> getAllTask() {
-        return new ResponseEntity<>(service.getAllTask(), HttpStatus.OK);
+    public ResponseEntity<List<TaskDTO>> getAllTask(@RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber, @RequestParam(value = "pageSize", defaultValue = "3", required = false) Integer pageSize) {
+        return new ResponseEntity<>(taskService.getAllTask(pageNumber, pageSize), HttpStatus.OK);
     }
 
     // DELETE TASK BY ID ----------------------------------------------------------------------------
@@ -274,7 +272,7 @@ public class TaskController {
     @DeleteMapping("/task/{taskId}")
     @CrossOrigin
     public ResponseEntity<Void> deleteTaskById(@PathVariable("taskId") Long taskId) {
-        service.deleteTaskById(taskId);
+        taskService.deleteTaskById(taskId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

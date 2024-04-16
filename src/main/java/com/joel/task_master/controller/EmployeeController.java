@@ -2,10 +2,9 @@ package com.joel.task_master.controller;
 
 import com.joel.task_master.dto.EmployeeDTO;
 import com.joel.task_master.dto.EmployeeTaskDTO;
-import com.joel.task_master.dto.TaskDTO;
 import com.joel.task_master.exception.TaskMasterException;
 import com.joel.task_master.model.Employee;
-import com.joel.task_master.service.Service;
+import com.joel.task_master.service.EmployeeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -24,7 +23,7 @@ import java.util.List;
 public class EmployeeController {
 
     @Autowired
-    private Service service;
+    private EmployeeService employeeService;
 
     // SAVE EMPLOYEE WITH TASKS ---------------------------------------------------------------------
     @Operation(
@@ -69,7 +68,7 @@ public class EmployeeController {
     @CrossOrigin
     @PostMapping("/employee-task")
     public ResponseEntity<Employee> saveEmployeeWithTask(@RequestBody EmployeeTaskDTO employeeTaskDTO) {
-        Employee employee = service.saveEmployeeWithTask(employeeTaskDTO.getEmployee());
+        Employee employee = employeeService.saveEmployeeWithTask(employeeTaskDTO.getEmployee());
         return new ResponseEntity<>(employee, HttpStatus.CREATED);
     }
 
@@ -111,7 +110,7 @@ public class EmployeeController {
     @PostMapping("/employee")
     @CrossOrigin
     public ResponseEntity<EmployeeDTO> saveEmployee(@RequestBody EmployeeDTO employeeDTO) {
-        return new ResponseEntity<>(service.saveEmployee(employeeDTO), HttpStatus.CREATED);
+        return new ResponseEntity<>(employeeService.saveEmployee(employeeDTO), HttpStatus.CREATED);
     }
 
     // UPDATE EMPLOYEE BY ID ------------------------------------------------------------------------
@@ -152,7 +151,7 @@ public class EmployeeController {
     @PutMapping("/employee/{empId}")
     @CrossOrigin
     public ResponseEntity<EmployeeDTO> updateEmpById(@PathVariable("empId") Long empId, @RequestBody EmployeeDTO employeeDTO) {
-        return new ResponseEntity<>(service.updateEmployeeById(empId, employeeDTO), HttpStatus.OK);
+        return new ResponseEntity<>(employeeService.updateEmployeeById(empId, employeeDTO), HttpStatus.OK);
     }
 
     // GET EMPLOYEE BY TASK ID ----------------------------------------------------------------------
@@ -194,7 +193,7 @@ public class EmployeeController {
     @GetMapping("/employee-task-id/{taskId}")
     @CrossOrigin
     public ResponseEntity<EmployeeDTO> getEmployeeByTaskId(@PathVariable("taskId") Long taskId) {
-        return new ResponseEntity<>(service.getEmployeeByTaskId(taskId), HttpStatus.OK);
+        return new ResponseEntity<>(employeeService.getEmployeeByTaskId(taskId), HttpStatus.OK);
     }
 
     // GET EMPLOYEE BY ID ---------------------------------------------------------------------------
@@ -236,7 +235,7 @@ public class EmployeeController {
     @GetMapping("/employee/{empId}")
     @CrossOrigin
     public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable("empId") Long empId) {
-        return new ResponseEntity<>(service.getEmployeeById(empId), HttpStatus.OK);
+        return new ResponseEntity<>(employeeService.getEmployeeById(empId), HttpStatus.OK);
     }
 
     // GET ALL EMPLOYEES ----------------------------------------------------------------------------
@@ -278,11 +277,10 @@ public class EmployeeController {
                     )
             }
     )
-
     @GetMapping("/employee")
     @CrossOrigin
-    public ResponseEntity<List<EmployeeDTO>> getAllEmployee() {
-        return new ResponseEntity<>(service.getAllEmployee(), HttpStatus.OK);
+    public ResponseEntity<List<EmployeeDTO>> getAllEmployee(@RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber, @RequestParam(value = "pageSize", defaultValue = "3", required = false) Integer pageSize) {
+        return new ResponseEntity<>(employeeService.getAllEmployee(pageNumber, pageSize), HttpStatus.OK);
     }
 
     // DELETE EMPLOYEE BY ID ------------------------------------------------------------------------
@@ -321,8 +319,9 @@ public class EmployeeController {
     @DeleteMapping("/employee/{empId}")
     @CrossOrigin
     public ResponseEntity<Void> deleteEmpById(@PathVariable("empId") Long empId) {
-        service.deleteEmployeeById(empId);
+        employeeService.deleteEmployeeById(empId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
 
 }
