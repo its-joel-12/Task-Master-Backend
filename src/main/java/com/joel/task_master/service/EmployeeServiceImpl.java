@@ -1,11 +1,9 @@
 package com.joel.task_master.service;
 
 import com.joel.task_master.dto.EmployeeDTO;
-import com.joel.task_master.dto.TaskDTO;
 import com.joel.task_master.exception.EmployeeNotFoundException;
 import com.joel.task_master.exception.EmployeeNullDetailsException;
 import com.joel.task_master.exception.TaskNotFoundException;
-import com.joel.task_master.exception.TaskNullDetailsException;
 import com.joel.task_master.model.Employee;
 import com.joel.task_master.model.Task;
 import com.joel.task_master.repository.EmployeeRepository;
@@ -14,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -110,7 +109,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public List<EmployeeDTO> getAllEmployee(Integer pageNumber, Integer pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+        Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by("empId"));
 
         Page<Employee> allPageEmployees = employeeRepository.findAll(pageable);
         List<Employee> allEmployee = allPageEmployees.getContent();
