@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -123,7 +124,7 @@ public class TaskServiceImpl implements TaskService {
     @Transactional
     public List<TaskDTO> getAllTask(Integer pageNumber, Integer pageSize) {
 
-        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+        Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by("taskId"));
 
         Page<Task> allPageTasks = taskRepository.findAll(pageable);
         List<Task> allTask = allPageTasks.getContent();
