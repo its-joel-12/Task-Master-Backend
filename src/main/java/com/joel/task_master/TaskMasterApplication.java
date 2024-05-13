@@ -10,9 +10,8 @@ public class TaskMasterApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TaskMasterApplication.class, args);
-		System.out.println("+-------------------------------------------------------------------------------------------+");
-		System.out.println("|\t\t\t\t\t\t TASKMASTER APPLICATION HAS STARTED/RESTARTED \t\t\t\t\t\t|");
-		System.out.println("+-------------------------------------------------------------------------------------------+");
+		System.out.println("+---------------------------------------------------------------------------------------+");
+		System.out.println("|\t\t\tTASKMASTER APPLICATION HAS STARTED/RESTARTED\t\t\t|");
+		System.out.println("+---------------------------------------------------------------------------------------+");
 	}
-
 }
